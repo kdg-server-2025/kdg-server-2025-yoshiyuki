@@ -14,7 +14,7 @@ services:
        - wordpress:/var/www/html
 
   db:
-    image: mariadb:11.8.1-rc
+    image: mariadb:11.8.2
     restart: always
     environment:
       MARIADB_DATABASE: wpdb
