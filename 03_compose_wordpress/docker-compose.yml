@@ -1,0 +1,29 @@
+services:
+
+  web:
+    image: wordpress:6.8.1-apache
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: dbuser 
+      WORDPRESS_DB_PASSWORD: password 
+      WORDPRESS_DB_NAME: wpdb
+    volumes:
+       - wordpress:/var/www/html
+
+  db:
+    image: mariadb:11.8.1-rc
+    restart: always
+    environment:
+      MARIADB_DATABASE: wpdb
+      MARIADB_USER: dbuser
+      MARIADB_PASSWORD: password
+      MARIADB_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mariadb
+
+volumes:
+  wordpress:
+  db:
